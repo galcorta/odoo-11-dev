@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sias_community,sias.community,model_sias_community,,1,0,0,0
+access_sias_home,sias.home,model_sias_home,,1,0,0,0

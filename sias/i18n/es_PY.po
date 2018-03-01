@@ -1,0 +1,964 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sias
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-27 00:38+0000\n"
+"PO-Revision-Date: 2018-02-27 00:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_meeting_count_3451
+msgid "# Meetings"
+msgstr "Reuniones"
+
+#. module: sias
+#: selection:sias.survey.input,source_distance:0
+msgid "100 mts"
+msgstr "100 mts"
+
+#. module: sias
+#: selection:sias.survey.input,source_distance:0
+msgid "300 mts"
+msgstr "300 mts"
+
+#. module: sias
+#: selection:sias.survey.input,source_distance:0
+msgid "350 mts"
+msgstr "350 mts"
+
+#. module: sias
+#: selection:sias.survey.input,source_distance:0
+msgid "400 mts"
+msgstr "400 mts"
+
+#. module: sias
+#: selection:sias.survey.input,source_distance:0
+msgid "5 mts"
+msgstr "5 mts"
+
+#. module: sias
+#: selection:sias.survey.input,source_distance:0
+msgid "500 mts"
+msgstr "500 mts"
+
+#. module: sias
+#: selection:sias.survey.input,source_distance:0
+msgid "60 mts"
+msgstr "60 mts"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_active
+#: model:ir.model.fields,field_description:sias.field_sias_home_active
+#: model:ir.model.fields,field_description:sias.field_sias_survey_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_type
+msgid "Address Type"
+msgstr "Tipo de dirección"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_occupation_agricultor
+msgid "Agricultor quantity"
+msgstr "Cant. Agricultor"
+
+#. module: sias
+#: selection:sias.survey.input,water_supply:0
+msgid "Aljibe comunitario"
+msgstr "Aljibe comunitario"
+
+#. module: sias
+#: selection:sias.survey.input,water_supply:0
+msgid "Aljibe propio"
+msgstr "Aljibe propio"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_bank_ids
+msgid "Banks"
+msgstr "Bancos"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_barcode
+msgid "Barcode"
+msgstr "Código de barras"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_bounce
+msgid "Bounce"
+msgstr "Rebote"
+
+#. module: sias
+#: selection:sias.survey.input,water_qualification:0
+msgid "Buena"
+msgstr "Buena"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_channel_ids
+msgid "Channels"
+msgstr "Canales"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_is_company
+msgid "Check if the contact is a company, otherwise it is a person"
+msgstr "Marque esta casilla si el contacto es una compañía. En caso contrario, será una persona."
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_customer
+msgid "Check this box if this contact is a customer."
+msgstr "Click en esta casilla si el contacto es un cliente"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_supplier
+msgid "Check this box if this contact is a vendor. If it's not checked, purchase people will not see it when encoding a purchase order."
+msgstr "Marque esta casilla si el contacto es un proveedor. Si no está marcada, el equipo de compras no lo verá cuando esté tramitando un pedido de compra."
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_employee
+msgid "Check this box if this contact is an Employee."
+msgstr "Marque si el contacto es un empleado"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_country_enforce_cities
+msgid "Check this box to ensure every address created in that country has a 'City' chosen in the list of the country's cities."
+msgstr "Check this box to ensure every address created in that country has a 'City' chosen in the list of the country's cities."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_city_id
+#: model:ir.model.fields,field_description:sias.field_sias_home_city
+msgid "City"
+msgstr "Ciudad"
+
+#. module: sias
+#: model:ir.actions.act_window,help:sias.action_sias_home_form_view
+msgid "Click to add a home."
+msgstr "Click para agregar una vivienda."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_color
+msgid "Color Index"
+msgstr "Índice de color"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_commercial_partner_id
+msgid "Commercial Entity"
+msgstr "Entidad comercial"
+
+#. module: sias
+#: model:ir.actions.act_window,name:sias.action_sias_comunity_form_view
+#: model:ir.ui.menu,name:sias.sias_comunity_menu
+msgid "Community"
+msgstr "Comunidades"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_community_id
+msgid "Community"
+msgstr "Comunidad"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_city_id
+#: model:ir.model.fields,field_description:sias.field_sias_home_company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_company_name
+msgid "Company Name"
+msgstr "Nombre de la compañía"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_commercial_company_name
+msgid "Company Name Entity"
+msgstr "Entidad del nombre de la compañía"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_company_type
+msgid "Company Type"
+msgstr "Tipo de compañía"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_contact_address
+msgid "Complete Address"
+msgstr "Dirección completa"
+
+#. module: sias
+#: model:ir.ui.menu,name:sias.sias_configuration_menu
+msgid "Configurations"
+msgstr "Configuraciones"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_child_ids
+msgid "Contacts"
+msgstr "Contactos"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_message_bounce
+msgid "Counter of the number of bounced emails for this contact"
+msgstr "Contador del número de correos electrónicos rebotados de este contacto"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_commercial_partner_country_id
+#: model:ir.model.fields,field_description:sias.field_sias_home_country_id
+msgid "Country"
+msgstr "País"
+
+#. module: sias
+#: model:ir.actions.act_window,help:sias.action_sias_comunity_form_view
+msgid "Create Communities."
+msgstr "Crear Comunidades."
+
+#. module: sias
+#: model:ir.actions.act_window,help:sias.action_sias_survey_input_form_view
+msgid "Create Surveys inputs."
+msgstr "Completar Encuesta."
+
+#. module: sias
+#: model:ir.actions.act_window,help:sias.action_sias_survey_form_view
+msgid "Create Surveys."
+msgstr "Crear Encuesta."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_create_uid
+#: model:ir.model.fields,field_description:sias.field_sias_home_create_uid
+#: model:ir.model.fields,field_description:sias.field_sias_survey_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_create_date
+#: model:ir.model.fields,field_description:sias.field_sias_home_create_date
+#: model:ir.model.fields,field_description:sias.field_sias_survey_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_credit_limit
+msgid "Credit Limit"
+msgstr "Crédito concedido"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_daily_liters_3498
+msgid "Daily liters"
+msgstr "Litros diarios"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_message_last_post
+msgid "Date of the last message posted on the record."
+msgstr "Fecha del último mensaje publicado en el registro."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_description
+#: model:ir.model.fields,field_description:sias.field_sias_survey_description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_diseases_diarrea
+msgid "Diarrea"
+msgstr "Diarrea"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_display_name
+#: model:ir.model.fields,field_description:sias.field_sias_home_display_name
+#: model:ir.model.fields,field_description:sias.field_sias_survey_display_name
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_display_name_3506
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_diseases_dolor_cabeza
+msgid "Dolor de cabeza"
+msgstr "Dolor de cabeza"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_partner_share
+msgid "Either customer (no user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data."
+msgstr "Ya sea cliente (no usuario), como usuario compartido. Indica si el socio actual es un cliente sin acceso o con un acceso limitado creado para compartir datos."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_email
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: sias
+#: model:ir.ui.view,arch_db:sias.sias_survey_input_form_view
+msgid "Enfermedades mas comunes"
+msgstr "Enfermedades mas comunes"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_country_enforce_cities
+msgid "Enforce Cities"
+msgstr "Enforce Cities"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_diseases_fiebre
+msgid "Fiebre"
+msgstr "Fiebre"
+
+#. module: sias
+#: selection:sias.survey.input,water_treatment:0
+msgid "Filtrado"
+msgstr "Filtrado"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_email_formatted
+msgid "Format email address \"Name <email@domain>\""
+msgstr "Dirección email formatado \"Nombre <email@domain>\""
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_email_formatted
+msgid "Formatted Email"
+msgstr "Email formatado"
+
+#. module: sias
+#: model:ir.ui.view,arch_db:sias.sias_survey_input_form_view
+msgid "Fuente de abastecimiento"
+msgstr "Fuente de abastecimiento"
+
+#. module: sias
+#: model:ir.ui.menu,name:sias.sias_general_menu
+msgid "General"
+msgstr "General"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_gtoeq_20_3487
+msgid "Greater or equal to 20"
+msgstr "Mayor o igual a 20"
+
+#. module: sias
+#: model:ir.ui.view,arch_db:sias.sias_survey_input_form_view
+msgid "Habitantes"
+msgstr "Habitantes"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_home_id_3484
+msgid "Home"
+msgstr "Vivienda"
+
+#. module: sias
+#: model:ir.ui.view,arch_db:sias.sias_home_form_view
+#: model:ir.ui.view,arch_db:sias.sias_home_list_view
+msgid "Home Chief"
+msgstr "Jefe de vivienda"
+
+#. module: sias
+#: model:ir.actions.act_window,name:sias.action_sias_home_form_view
+#: model:ir.ui.menu,name:sias.sias_home_menu
+msgid "Homes"
+msgstr "Viviendas"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_id
+#: model:ir.model.fields,field_description:sias.field_sias_home_id
+#: model:ir.model.fields,field_description:sias.field_sias_survey_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_im_status
+msgid "IM Status"
+msgstr "Estado del chat"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si marcado la nueva mensaje requiere atencion"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_opt_out
+msgid "If opt-out is checked, this contact has refused to receive emails for mass mailing and marketing campaign. Filter 'Available for Mass Mailing' allows users to filter the partners when performing mass mailing."
+msgstr "Si 'No acepta mensajes' está marcado, este contacto ha rehusado recibir correos electrónicos de envíos masivos y campañas de marketing. El filtro 'Disponible para envíos masivos' permite a los usuarios filtrar a las empresas cuando se realicen envíos masivos."
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_team_id_3467
+msgid "If set, this sales channel will be used for sales and assignations related to this partner"
+msgstr "If set, this sales channel will be used for sales and assignations related to this partner"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_lang
+msgid "If the selected language is loaded in the system, all documents related to this contact will be printed in this language. If not, it will be English."
+msgstr "Si el idioma seleccionado está cargado en el sistema, todos los documentos relacionados con el contacto se imprimirán en este idioma. Si no, se imprimirán en inglés."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_industry_id
+msgid "Industry"
+msgstr "Sector"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_ref
+msgid "Internal Reference"
+msgstr "Referencia interna"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_is_company
+msgid "Is a Company"
+msgstr "Es una compañia"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_customer
+msgid "Is a Customer"
+msgstr "Es cliente"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_supplier
+msgid "Is a Vendor"
+msgstr "Es proveedor"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_function
+msgid "Job Position"
+msgstr "Puesto de trabajo"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_occupation_jornalero
+msgid "Jornalero quantity"
+msgstr "Cant. Jornalero"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_lang
+msgid "Language"
+msgstr "Idioma"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_last_post
+msgid "Last Message Date"
+msgstr "Fecha de la ultima mensaje"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community___last_update
+#: model:ir.model.fields,field_description:sias.field_sias_home___last_update
+#: model:ir.model.fields,field_description:sias.field_sias_survey___last_update
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input___last_update_3507
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_write_uid
+#: model:ir.model.fields,field_description:sias.field_sias_home_write_uid
+#: model:ir.model.fields,field_description:sias.field_sias_survey_write_uid
+msgid "Last Updated by"
+msgstr "Ultima actualización por"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_write_date
+#: model:ir.model.fields,field_description:sias.field_sias_home_write_date
+#: model:ir.model.fields,field_description:sias.field_sias_survey_write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_calendar_last_notif_ack_3439
+msgid "Last notification marked as read from base Calendar"
+msgstr "Última notificación marcada como leída desde la base del calendario"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_lt_20_3486
+msgid "Less than 20"
+msgstr "Menores de 20 años"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_image_medium
+msgid "Medium-sized image"
+msgstr "Imagen de tamaño mediano"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_image_medium
+msgid "Medium-sized image of this contact. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
+msgstr "Imagen mediana de este contacto. Se redimensiona automáticamente a 128x128 px, con el ratio de aspecto preservado. Se usa este campo en las vistas formulario y en algunas vistas kanban."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_meeting_ids_3407
+msgid "Meetings"
+msgstr "Reuniones"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_mens_3489
+msgid "Mens quantity"
+msgstr "Cant. de Varones"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_mobile
+msgid "Mobile"
+msgstr "Celular"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_community_name
+#: model:ir.model.fields,field_description:sias.field_sias_home_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Next Activity Deadline"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_activity_type_id
+msgid "Next Activity Type"
+msgstr "Next Activity Type"
+
+#. module: sias
+#: selection:sias.survey.input,water_treatment:0
+msgid "Ninguno"
+msgstr "Ninguno"
+
+#. module: sias
+#: model:ir.ui.view,arch_db:sias.sias_survey_input_form_view
+msgid "Nivel educativo"
+msgstr "Nivel educativo"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_comment
+msgid "Notes"
+msgstr "Notas"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: sias
+#: model:ir.ui.view,arch_db:sias.sias_survey_input_form_view
+msgid "Observación"
+msgstr "Observación"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_observation_3505
+msgid "Observation"
+msgstr "Observation"
+
+#. module: sias
+#: model:ir.ui.view,arch_db:sias.sias_survey_input_form_view
+msgid "Ocupación"
+msgstr "Ocupación"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_opportunity_ids_3408
+msgid "Opportunities"
+msgstr "Oportunidades"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_opportunity_count_3428
+msgid "Opportunity"
+msgstr "Oportunidad"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_opt_out
+msgid "Opt-Out"
+msgstr "No acepta recibir emails"
+
+#. module: sias
+#: model:ir.ui.view,arch_db:sias.sias_survey_input_form_view
+msgid "Otros"
+msgstr "Otros"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_parent_name
+msgid "Parent name"
+msgstr "Nombre del padre"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_partner_id
+msgid "Partner-related data of the home"
+msgstr "Partner-related data of the home"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_name
+msgid "Periodo"
+msgstr "Periodo"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_population_3485
+msgid "Population quantity"
+msgstr "Cantidad de personas"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_education_primario
+msgid "Primario"
+msgstr "Primario"
+
+#. module: sias
+#: model:ir.actions.act_window,help:sias.action_sias_comunity_form_view
+msgid "Puede crear, buscar y actualizar comunidades."
+msgstr "Puede crear, buscar y actualizar comunidades."
+
+#. module: sias
+#: model:ir.actions.act_window,help:sias.action_sias_survey_form_view
+msgid "Puede crear, buscar y actualizar encuestas."
+msgstr "Puede crear, buscar y actualizar encuestas."
+
+#. module: sias
+#: model:ir.actions.act_window,help:sias.action_sias_survey_input_form_view
+msgid "Puede crear, buscar y actualizar respuestas a encuestas."
+msgstr "Puede crear, buscar y actualizar respuestas a encuestas."
+
+#. module: sias
+#: selection:sias.survey.input,water_qualification:0
+msgid "Regular"
+msgstr "Regular"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_parent_id
+msgid "Related Company"
+msgstr "Empresa relacionada"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_partner_id
+msgid "Related Partner"
+msgstr "Empresa relacionada"
+
+#. module: sias
+#: model:ir.ui.menu,name:sias.sias_report_menu
+msgid "Reports"
+msgstr "Informes"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_diseases_respiratoria
+msgid "Respiratorias"
+msgstr "Respiratorias"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_activity_user_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: sias
+#: model:ir.ui.menu,name:sias.sias_menu_root
+msgid "SIAS"
+msgstr "SIAS"
+
+#. module: sias
+#: model:ir.actions.act_window,help:sias.action_sias_home_form_view
+msgid "SIAS helps you easily track all activities related to\n"
+"                a home."
+msgstr "SIAS te ayuda a registrar y a hacer seguimiento de las encuestas referentes a cada vivienda."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_team_id_3467
+msgid "Sales Channel"
+msgstr "Sales Channel"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_user_id
+msgid "Salesperson"
+msgstr "Comercial"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_education_secundario
+msgid "Secundario"
+msgstr "Secundario"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_self
+msgid "Self"
+msgstr "Si mismo"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_partner_share
+msgid "Share Partner"
+msgstr "Compartir empresa"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_signup_expiration
+msgid "Signup Expiration"
+msgstr "Expiración del ingreso"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_signup_token
+msgid "Signup Token"
+msgstr "Palabra de ingreso"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_signup_type
+msgid "Signup Token Type"
+msgstr "Tipo de la palabra de ingreso"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_signup_valid
+msgid "Signup Token is Valid"
+msgstr "La palabra de ingreso es válida"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_signup_url
+msgid "Signup URL"
+msgstr "URL de ingreso"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_education_sin_instruccion
+msgid "Sin instrucción"
+msgstr "Sin instrucción"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_image_small
+msgid "Small-sized image"
+msgstr "Imagen de tamaño pequeño"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_image_small
+msgid "Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr "Imagen de tamaño pequeño de este contacto. Se redimensiona automáticamente a 64x64 px, con el ratio de aspecto preservado. Use este campo donde se requiera una imagen pequeña."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_source_distance_3497
+msgid "Source distance"
+msgstr "Fuente mas cercana"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_activity_state
+#: model:ir.model.fields,field_description:sias.field_sias_home_state_id
+msgid "State"
+msgstr "Estado"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_street
+msgid "Street"
+msgstr "Calle"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_street2
+msgid "Street2"
+msgstr "Calle2"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_sump_3495
+msgid "Sump"
+msgstr "Letrina"
+
+#. module: sias
+#: model:ir.actions.act_window,name:sias.action_sias_survey_form_view
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_survey_id_3483
+#: model:ir.ui.menu,name:sias.sias_survey_menu
+msgid "Survey"
+msgstr "Encuestas"
+
+#. module: sias
+#: model:ir.actions.act_window,name:sias.action_sias_survey_input_form_view
+#: model:ir.ui.menu,name:sias.sias_survey_input_menu
+msgid "Survey Input"
+msgstr "Respuesta a encuestas"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_vat
+msgid "TIN"
+msgstr "RUC"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_category_id
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_vat
+msgid "Tax Identification Number. Fill it if the company is subjected to taxes. Used by the some of the legal statements."
+msgstr "Número de identificación fiscal. Llénelo si la compañía esta sujeta a impuestos. Usado por algunos documentos legales."
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_user_id
+msgid "The internal user that is in charge of communicating with this contact if any."
+msgstr "El usuario interno encargado de comunicarse con este contacto si lo hubiese."
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_tz
+msgid "The partner's timezone, used to output proper date and time values inside printed reports. It is important to set a value for this field. You should use the same timezone that is otherwise used to pick and render date and time values: your computer's timezone."
+msgstr "Zona horaria de la empresa, usada para mostrar la fecha y hora adecuadas en los informes. Es importante establecer un valor para este campo. Debería usar la misma zona horaria que se coge en cualquier caso para mostrar los valores de fecha y hora: la zona horaria de su ordenador."
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_image
+msgid "This field holds the image used as avatar for this contact, limited to 1024x1024px"
+msgstr "Este campo contiene la imagen utilizada como avatar para este contacto, limitada a 1024x1024 px"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_tz
+msgid "Timezone"
+msgstr "Zona horaria"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_tz_offset
+msgid "Timezone offset"
+msgstr "Compensación zona horaria"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_title
+msgid "Title"
+msgstr "Título"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_unread
+msgid "Unread Messages"
+msgstr "Mensajes sin leer"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes sin leer"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_type
+msgid "Used to select automatically the right address according to the context in sales and purchases documents."
+msgstr "﻿Utilizado para seleccionar automáticamente la dirección correcta según el contexto en documentos de ventas y compras."
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_user_ids
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_water_supply_3496
+msgid "Water Supply"
+msgstr "Fuente"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_water_qualification_3500
+msgid "Water qualification"
+msgstr "Calificación del agua"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_water_treatment_3499
+msgid "Water treatment"
+msgstr "Tratamiento del agua"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_website
+msgid "Website"
+msgstr "Sitio web"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: sias
+#: model:ir.model.fields,help:sias.field_sias_home_website
+msgid "Website of Partner or Company"
+msgstr "Web de la empresa o de la compañía"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_survey_input_womens_3488
+msgid "Womens quantity"
+msgstr "Cant. de mujeres"
+
+#. module: sias
+#: model:ir.model.fields,field_description:sias.field_sias_home_zip
+msgid "Zip"
+msgstr "Código postal"
+
+#. module: sias
+#: model:ir.model,name:sias.model_sias_community
+msgid "sias.community"
+msgstr "sias.community"
+
+#. module: sias
+#: model:ir.model,name:sias.model_sias_home
+msgid "sias.home"
+msgstr "sias.home"
+
+#. module: sias
+#: model:ir.model,name:sias.model_sias_survey
+msgid "sias.survey"
+msgstr "sias.survey"
+
+#. module: sias
+#: model:ir.model,name:sias.model_sias_survey_input
+msgid "sias.survey_input"
+msgstr "sias.survey_input"
+

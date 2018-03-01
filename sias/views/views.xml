@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- explicit views definitions -->
+
+        <!-- SIAS Community -->
+        <record model="ir.ui.view" id="sias_comunity_list_view">
+          <field name="name">sias community list</field>
+          <field name="model">sias.community</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="city_id"/>
+              <field name="create_date" widget="date"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_comunity_form_view">
+            <field name="name">sias community form</field>
+            <field name="model">sias.community</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active"
+                                    type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                    <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                            <button string="Graficos"
+                                type="object"
+                                name= "open_dashboard"
+                                class="oe_stat_button" icon="fa-arrows-v"/>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="city_id"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_community_kanban_view">
+            <field name="name">sias.community.kanban</field>
+            <field name="model">sias.community</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="city_id"/>
+                    <field name="image"/>
+                    <field name="image_medium"/>
+                    <field name="image_small"/>
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="o_kanban_image">
+                                    <t t-if="record.image_small.raw_value">
+                                        <img t-att-src="kanban_image('sias.community', 'image_small', record.id.raw_value)"/>
+                                    </t>
+                                    <t t-if="!record.image_small.raw_value">
+                                        <img t-att-src='_s + "/base/static/src/img/community.png"'/>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <div>
+                                        <!--<label for="display_name">Jefe:</label>-->
+                                        <field name="name"/>
+                                    </div>
+                                    <div>
+                                        <!--<label for="display_name">Jefe:</label>-->
+                                        <field name="city_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- SIAS Home -->
+        <record model="ir.ui.view" id="sias_home_list_view">
+          <field name="name">sias home list</field>
+          <field name="model">sias.home</field>
+          <field name="arch" type="xml">
+            <tree>
+                <field name="home_code" readonly="1"/>
+                <field name="name" string="Home Chief"/>
+                <field name="community_id"/>
+                <field name="create_date" widget="date"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_home_form_view">
+            <field name="name">sias home form</field>
+            <field name="model">sias.home</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                    options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <!--<field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}'/>-->
+                        <div class="oe_title">
+                            <h1>
+                                <field name="home_code" readonly="1"/>
+                            </h1>
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Jefe de la vivienda" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="community_id"/>
+                            <field name="observation"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_home_kanban_view">
+            <field name="name">sias.home.kanban</field>
+            <field name="model">sias.home</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="home_code"/>
+                    <field name="color"/>
+                    <field name="display_name"/>
+                    <field name="title"/>
+                    <field name="email"/>
+                    <field name="parent_id"/>
+                    <field name="is_company"/>
+                    <field name="function"/>
+                    <field name="phone"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="mobile"/>
+                    <field name="state_id"/>
+                    <field name="category_id"/>
+                    <field name="image_small"/>
+                    <field name="type"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="o_kanban_image">
+                                    <t t-if="record.image_small.raw_value">
+                                        <img t-att-src="kanban_image('sias.home', 'image_small', record.id.raw_value)"/>
+                                    </t>
+                                    <t t-if="!record.image_small.raw_value">
+                                        <t t-if="record.type.raw_value === 'delivery'">
+                                            <img t-att-src='_s + "/base/static/src/img/truck.png"' class="o_kanban_image oe_kanban_avatar_smallbox"/>
+                                        </t>
+                                        <t t-if="record.type.raw_value === 'invoice'">
+                                            <img t-att-src='_s + "/base/static/src/img/money.png"' class="o_kanban_image oe_kanban_avatar_smallbox"/>
+                                         </t>
+                                        <t t-if="record.type.raw_value != 'invoice' &amp;&amp; record.type.raw_value != 'delivery'">
+                                            <t t-if="record.is_company.raw_value === true">
+                                                <img t-att-src='_s + "/base/static/src/img/company_image.png"'/>
+                                            </t>
+                                            <t t-if="record.is_company.raw_value === false">
+                                                <img t-att-src='_s + "/base/static/src/img/avatar.png"'/>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <div>
+                                        <!--<label for="display_name">Jefe:</label>-->
+                                        <field name="home_code"/>
+                                    </div>
+                                    <div>
+                                        <!--<label for="display_name">Jefe:</label>-->
+                                        <field name="display_name"/>
+                                    </div>
+                                    <div>
+                                        <!--<label for="community_id">Comunidad:</label>-->
+                                        <field name="community_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!--SIAS Survey-->
+        <record model="ir.ui.view" id="sias_survey_list_view">
+          <field name="name">sias survey list</field>
+          <field name="model">sias.survey</field>
+          <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="create_date" widget="date" string="Creado en"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_survey_form_view">
+            <field name="name">sias survey form</field>
+            <field name="model">sias.survey</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                    options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--SIAS Survey Input-->
+        <record model="ir.ui.view" id="sias_survey_input_list_view">
+          <field name="name">sias survey input list</field>
+          <field name="model">sias.survey.input</field>
+          <field name="arch" type="xml">
+            <tree>
+                <field name="home_id"/>
+                <field name="community_id"/>
+                <field name="survey_id"/>
+                <field name="create_date" widget="date"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_survey_input_form_view">
+            <field name="name">sias survey input form</field>
+            <field name="model">sias.survey.input</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="survey_id"/>
+                            <field name="home_id"/>
+                        </group>
+                        <group>
+                            <group string="Habitantes">
+                                <field name="population"/>
+                                <field name="lt_20"/>
+                                <field name="womens"/>
+                            </group>
+                            <group string="Nivel educativo">
+                                <field name="education_primario"/>
+                                <field name="education_secundario"/>
+                                <field name="education_sin_instruccion"/>
+                            </group>
+                            <group string="Ocupación">
+                                <field name="occupation_agricultor"/>
+                                <field name="occupation_jornalero"/>
+                            </group>
+                            <group string="Fuente de abastecimiento">
+                                <field name="water_supply"/>
+                                <field name="source_distance"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Enfermedades mas comunes">
+                                <field name="diseases_diarrea"/>
+                                <field name="diseases_respiratoria"/>
+                                <field name="diseases_dolor_cabeza"/>
+                                <field name="diseases_fiebre"/>
+                            </group>
+                            <group string="Otros">
+                                <field name="water_treatment"/>
+                                <field name="daily_liters"/>
+                                <field name="sump"/>
+                            </group>
+                        </group>
+                        <group string="Observación">
+                            <field name="observation" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record id="action_sias_comunity_form_view" model="ir.actions.act_window">
+            <field name="name">Community</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sias.community</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create Communities.
+              </p><p>
+                Puede crear, buscar y actualizar comunidades.
+              </p><p>
+              </p>
+            </field>
+        </record>
+        <record id="action_partner_sias_comunity_form_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="sias_community_kanban_view"/>
+            <field name="act_window_id" ref="action_sias_comunity_form_view"/>
+        </record>
+        <record id="action_partner_sias_comunity_form_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="sias_comunity_list_view"/>
+            <field name="act_window_id" ref="action_sias_comunity_form_view"/>
+        </record>
+        <record id="action_partner_sias_comunity_form_view3" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sias_comunity_form_view"/>
+            <field name="act_window_id" ref="action_sias_comunity_form_view"/>
+        </record>
+
+        <record id="action_sias_home_form_view" model="ir.actions.act_window">
+            <field name="name">Homes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sias.home</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[]</field>
+            <!--<field name="context">{'default_beneficiary':1, 'search_default_beneficiary':1}</field>-->
+            <field name="filter" eval="True"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a home.
+              </p><p>
+                SIAS helps you easily track all activities related to
+                a home.
+              </p>
+            </field>
+        </record>
+        <record id="action_partner_sias_home_form_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="sias_home_kanban_view"/>
+            <field name="act_window_id" ref="action_sias_home_form_view"/>
+        </record>
+        <record id="action_partner_sias_home_form_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="sias_home_list_view"/>
+            <field name="act_window_id" ref="action_sias_home_form_view"/>
+        </record>
+        <record id="action_partner_sias_home_form_view3" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sias_home_form_view"/>
+            <field name="act_window_id" ref="action_sias_home_form_view"/>
+        </record>
+
+        <record id="action_sias_survey_form_view" model="ir.actions.act_window">
+            <field name="name">Survey</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sias.survey</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create Surveys.
+              </p><p>
+                Puede crear, buscar y actualizar encuestas.
+              </p><p>
+              </p>
+            </field>
+        </record>
+
+        <record id="action_sias_survey_input_form_view" model="ir.actions.act_window">
+            <field name="name">Survey Input</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sias.survey.input</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create Surveys inputs.
+              </p><p>
+                Puede crear, buscar y actualizar respuestas a encuestas.
+              </p><p>
+              </p>
+            </field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem id="sias_menu_root"
+            name="SIAS"
+            web_icon="sias,static/description/icon.png"
+            sequence="1"/>
+
+        <!-- menu categories -->
+        <menuitem id="sias_general_menu"
+            name="General"
+            parent="sias_menu_root"
+            sequence="1"/>
+
+        <menuitem id="sias_report_menu"
+            name="Reports"
+            parent="sias_menu_root"
+            sequence="2"/>
+
+        <menuitem id="sias_configuration_menu"
+            name="Configurations"
+            parent="sias_menu_root"
+            sequence="3"/>
+
+
+        <!-- actions menu -->
+        <menuitem id="sias_survey_input_menu"
+            parent="sias_general_menu"
+            action="sias.action_sias_survey_input_form_view"
+            sequence="1"/>
+
+        <menuitem id="sias_survey_menu"
+            parent="sias_general_menu"
+            action="sias.action_sias_survey_form_view"
+            sequence="2"/>
+
+        <menuitem id="sias_home_menu"
+            parent="sias_general_menu"
+            action="sias.action_sias_home_form_view"
+            sequence="3"/>
+
+        <menuitem id="sias_comunity_menu"
+            parent="sias_general_menu"
+            action="sias.action_sias_comunity_form_view"
+            sequence="4"/>
+
+
+         <!--<menuitem id="sias_survey_analysis_menu"-->
+            <!--parent="sias_report_menu"-->
+            <!--action="sias.action_sias_survey_analysis_view"-->
+            <!--sequence="1"/>-->
+
+        <!--<menuitem id="sias_user_menu"-->
+            <!--parent="sias_configuration_menu"-->
+            <!--action="sias.action_sias_user_form_view"-->
+            <!--sequence="1"/>-->
+
+        <!--Action for Gender Pie Chart -->
+        <record id="action_gender_pie_chart" model="ir.actions.client">
+            <field name="name">Gender Pie Chart</field>
+            <field name="tag">action_sias_chart_page</field>
+
+        </record>
+        <menuitem id="GenderPieChart" name="Gender Pie Chart" parent="sias_report_menu"
+            action="action_gender_pie_chart"  sequence="1"/>
+
+    </data>
+</odoo>

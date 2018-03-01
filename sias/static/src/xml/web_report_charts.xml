@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="GenderPieChart">
+        <div id="container" style="float:left;min-width: 50%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="container2" style="float:left;min-width: 50%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    </t>
+</templates>
+
