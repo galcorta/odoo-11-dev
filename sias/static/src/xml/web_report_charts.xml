@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
     <t t-name="GenderPieChart">
-        <div id="container" style="float:left;min-width: 50%; height: 400px; max-width: 600px; margin: 0 auto"></div>
-        <div id="container2" style="float:left;min-width: 50%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="gender" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="population" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="sump" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="source_distance" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="water_qualification" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="water_treatment" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="common_diseases" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="water_supply" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="occupation" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="education" style="float:left;min-width: 45%; height: 400px; max-width: 600px; margin: 0 auto"></div>
     </t>
 </templates>
 

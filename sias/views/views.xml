@@ -36,7 +36,7 @@
                         </div>
                         <div class="oe_title">
                             <h1>
-                                <field name="name" placeholder="Nombre"/>
+                                <field name="name" placeholder="Nombre" required="1"/>
                             </h1>
                         </div>
                         <group>
@@ -96,8 +96,8 @@
           <field name="model">sias.home</field>
           <field name="arch" type="xml">
             <tree>
-                <field name="home_code" readonly="1"/>
-                <field name="name" string="Home Chief"/>
+                <field name="name"/>
+                <field name="chief_name" string="Home Chief"/>
                 <field name="community_id"/>
                 <field name="create_date" widget="date"/>
             </tree>
@@ -120,10 +120,10 @@
                         <!--<field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}'/>-->
                         <div class="oe_title">
                             <h1>
-                                <field name="home_code" readonly="1"/>
+                                <field name="name" string="Número" default_focus="1" />
                             </h1>
                             <h1>
-                                <field name="name" default_focus="1" placeholder="Jefe de la vivienda" required="1"/>
+                                <field name="chief_name" placeholder="Jefe de la vivienda" required="1"/>
                             </h1>
                         </div>
                         <group>
@@ -141,7 +141,7 @@
             <field name="arch" type="xml">
                 <kanban class="o_res_partner_kanban">
                     <field name="id"/>
-                    <field name="home_code"/>
+                    <field name="name"/>
                     <field name="color"/>
                     <field name="display_name"/>
                     <field name="title"/>
@@ -187,16 +187,16 @@
                                 <div class="oe_kanban_details">
                                     <div>
                                         <!--<label for="display_name">Jefe:</label>-->
-                                        <field name="home_code"/>
+                                        <field name="name"/>
                                     </div>
                                     <div>
                                         <!--<label for="display_name">Jefe:</label>-->
                                         <field name="display_name"/>
                                     </div>
-                                    <div>
-                                        <!--<label for="community_id">Comunidad:</label>-->
-                                        <field name="community_id"/>
-                                    </div>
+                                    <!--<div>-->
+                                        <!--&lt;!&ndash;<label for="community_id">Comunidad:</label>&ndash;&gt;-->
+                                        <!--<field name="community_id"/>-->
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </t>
@@ -234,7 +234,6 @@
                         <group>
                             <field name="name"/>
                             <field name="description"/>
-                            <field name="active"/>
                         </group>
                     </sheet>
                 </form>
@@ -294,6 +293,7 @@
                                 <field name="diseases_fiebre"/>
                             </group>
                             <group string="Otros">
+                                <field name="water_qualification"/>
                                 <field name="water_treatment"/>
                                 <field name="daily_liters"/>
                                 <field name="sump"/>

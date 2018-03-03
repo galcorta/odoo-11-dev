@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sias_community,sias.community,model_sias_community,,1,0,0,0
-access_sias_home,sias.home,model_sias_home,,1,0,0,0
+access_sias_community,sias.community,model_sias_community,,1,1,1,1
+access_sias_home,sias.home,model_sias_home,,1,1,1,1
+access_sias_survey,sias.survey,model_sias_survey,,1,1,1,1
+access_sias_survey_input,sias.survey.input,model_sias_survey_input,,1,1,1,1

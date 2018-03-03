@@ -5,6 +5,7 @@ import threading
 
 from odoo import models, fields, api, tools
 from odoo.modules import get_module_resource
+from odoo.exceptions import ValidationError
 
 
 class Community(models.Model):
@@ -64,9 +65,10 @@ class Home(models.Model):
     _name = 'sias.home'
     _inherits = {'res.partner': 'partner_id'}
 
-    home_code = fields.Char(string='Code', compute='_get_home_code')
+    # home_code = fields.Char(string='Code', compute='_get_home_code')
     partner_id = fields.Many2one('res.partner', required=True, ondelete='restrict', auto_join=True,
                                  string='Related Partner', help='Partner-related data of the home')
+    chief_name = fields.Char("Chief name", required=True)
     community_id = fields.Many2one('sias.community', required=True, ondelete='restrict', string="Community")
     observation = fields.Text("Observation")
     active = fields.Boolean("Active", default=True)
@@ -118,6 +120,11 @@ class Home(models.Model):
         partner = super(Home, self).create(vals)
         return partner
 
+    @api.depends('is_company', 'name', 'parent_id.name', 'type', 'company_name')
+    def _compute_display_name(self):
+        for partner in self:
+            partner.display_name = self.chief_name + ' / ' + self.community_id.name
+
 
 class Survey(models.Model):
     _name = 'sias.survey'
@@ -143,9 +150,10 @@ class SurveyInput(models.Model):
 
         # .sorted(key=lambda r: r.create_date)[-1]
 
+    name = fields.Char(compute='_compute_default_name')
     survey_id = fields.Many2one('sias.survey', default=_get_last_survey)
     home_id = fields.Many2one('sias.home')
-    population = fields.Integer("Population quantity")
+    population = fields.Integer("Population quantity", required=True)
     lt_20 = fields.Integer("Less than 20")
     gtoeq_20 = fields.Integer("Greater or equal to 20", compute='_compute_gtoeq_20', store=True)
     womens = fields.Integer("Womens quantity")
@@ -174,7 +182,7 @@ class SurveyInput(models.Model):
         ('ninguno', 'Ninguno'),
         ('filtrado', 'Filtrado')
     ], string="Water treatment", default='ninguno')
-    water_qualification  = fields.Selection([
+    water_qualification = fields.Selection([
         ('regular', 'Regular'),
         ('buena', 'Buena')
     ], string="Water qualification", default='regular')
@@ -186,6 +194,16 @@ class SurveyInput(models.Model):
 
     community_id = fields.Many2one(related='home_id.community_id', string="Community")
 
+    @api.constrains('population')
+    def _check_population(self):
+        for record in self:
+            if record.population < 1:
+                raise ValidationError("Debe indicar la cant. de Habitantes")
+
+    @api.depends('survey_id', 'home_id')
+    def _compute_default_name(self):
+        self.name = self.survey_id.name + '-' + self.home_id.name
+
     @api.depends('population', 'lt_20')
     def _compute_gtoeq_20(self):
         self.gtoeq_20 = self.population - self.lt_20
@@ -194,34 +212,351 @@ class SurveyInput(models.Model):
     def _compute_mens(self):
         self.mens = self.population - self.womens
 
-    @api.multi
-    def get_gender_data(self, **kwargs):
-        community_id = kwargs['community_id']
+    def _charts_data(self, community_id):
+        survey_inputs = None
         last_survey = self._get_last_survey()
-        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        if last_survey:
+            if community_id:
+                survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+            else:
+                survey_inputs = self.search([['survey_id', '=', last_survey.id]])
+        return survey_inputs
+
+    def _get_gender_data(self, survey_inputs):
+        result = []
         womens_quant = 0
         mens_quant = 0
 
         for input in survey_inputs:
-            womens_quant += input.womens or 0
-            mens_quant += input.mens or 0
+            if input.population:
+                womens_quant += input.womens or 0
+                mens_quant += input.mens or 0
 
-        if last_survey:
-            crm_lst = [{
+        if womens_quant or mens_quant:
+            result = [{
                 'name': 'Mujeres',
                 'y': womens_quant,
-                'sliced': True,
-                'selected': True
+                # 'sliced': True,
+                # 'selected': True
             }, {
                 'name': 'Varones',
                 'y': mens_quant
             }]
-        else:
-            crm_lst = [{
-                'name': 'Sin datos',
-                'y': 100,
-                'sliced': True,
-                'selected': True
+
+        return result
+
+    def _get_population_data(self, survey_inputs):
+        result = []
+        lt_20 = 0
+        gtoeq_20 = 0
+
+        for input in survey_inputs:
+            lt_20 += input.lt_20 or 0
+            gtoeq_20 += input.gtoeq_20 or 0
+
+        if lt_20 or gtoeq_20 :
+            result = [{
+                'name': 'Menor',
+                'y': lt_20
+            }, {
+                'name': 'Mayor o igual',
+                'y': gtoeq_20
             }]
 
-        return crm_lst
+        return result
+
+    @api.multi
+    def get_sump_data(self, **kwargs):
+        community_id = kwargs['community_id']
+        last_survey = self._get_last_survey()
+        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        with_sump = 0
+        without_sump = 0
+
+        for input in survey_inputs:
+            if input.sump:
+                with_sump += 1
+            else:
+                without_sump += 1
+
+        if last_survey:
+            data_lst = [{
+                'name': 'Posee letrina',
+                'y': with_sump
+            }, {
+                'name': 'No posee letrina',
+                'y': without_sump
+            }]
+        else:
+            data_lst = [{
+                'name': 'Sin datos',
+                'y': 100
+            }]
+
+        return data_lst
+
+    @api.multi
+    def get_source_distance_data(self, **kwargs):
+        community_id = kwargs['community_id']
+        last_survey = self._get_last_survey()
+        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        mts5 = 0
+        mts60 = 0
+        mts100 = 0
+        mts300 = 0
+        mts350 = 0
+        mts400 = 0
+        mts500 = 0
+
+        for input in survey_inputs:
+            if input.source_distance == '5':
+                mts5 += 1
+            elif input.source_distance == '60':
+                mts60 += 1
+            elif input.source_distance == '100':
+                mts100 += 1
+            elif input.source_distance == '300':
+                mts300 += 1
+            elif input.source_distance == '350':
+                mts350 += 1
+            elif input.source_distance == '400':
+                mts400 += 1
+            else:
+                mts500 += 1
+
+        if last_survey:
+            data_lst = [{
+                'name': '5 mts',
+                'y': mts5
+            }, {
+                'name': '60 mts',
+                'y': mts60
+            }, {
+                'name': '100 mts',
+                'y': mts100
+            }, {
+                'name': '300 mts',
+                'y': mts300
+            }, {
+                'name': '350 mts',
+                'y': mts350
+            }, {
+                'name': '400 mts',
+                'y': mts400
+            }, {
+                'name': '500 mts',
+                'y': mts500
+            }]
+        else:
+            data_lst = [{
+                'name': 'Sin datos',
+                'y': 100
+            }]
+
+        return data_lst
+
+    @api.multi
+    def get_water_qualification_data(self, **kwargs):
+        community_id = kwargs['community_id']
+        last_survey = self._get_last_survey()
+        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        buena = 0
+        regular = 0
+
+        for input in survey_inputs:
+            if input.water_qualification == 'buena':
+                buena += 1
+            else:
+                regular += 1
+
+        if last_survey:
+            data_lst = [{
+                'name': 'Buena',
+                'y': buena
+            }, {
+                'name': 'Regular',
+                'y': regular
+            }]
+        else:
+            data_lst = [{
+                'name': 'Sin datos',
+                'y': 100
+            }]
+
+        return data_lst
+
+    @api.multi
+    def get_water_treatment_data(self, **kwargs):
+        community_id = kwargs['community_id']
+        last_survey = self._get_last_survey()
+        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        ninguno = 0
+        filtrado = 0
+
+        for input in survey_inputs:
+            if input.water_treatment == 'ninguno':
+                ninguno += 1
+            else:
+                filtrado += 1
+
+        if last_survey:
+            data_lst = [{
+                'name': 'Ninguno',
+                'y': ninguno
+            }, {
+                'name': 'Filtrado',
+                'y': filtrado
+            }]
+        else:
+            data_lst = [{
+                'name': 'Sin datos',
+                'y': 100
+            }]
+
+        return data_lst
+
+    @api.multi
+    def get_common_diseases_data(self, **kwargs):
+        community_id = kwargs['community_id']
+        last_survey = self._get_last_survey()
+        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        diarrea = 0
+        respiratoria = 0
+        dolor_cabeza = 0
+        fiebre = 0
+
+        for input in survey_inputs:
+            if input.diseases_diarrea:
+                diarrea += 1
+            if input.diseases_respiratoria:
+                respiratoria += 1
+            if input.diseases_dolor_cabeza:
+                dolor_cabeza += 1
+            if input.diseases_fiebre:
+                fiebre += 1
+
+        if last_survey:
+            data_lst = [{
+                'name': 'Diarrea',
+                'y': diarrea
+            }, {
+                'name': 'Respiratorias',
+                'y': respiratoria
+            }, {
+                'name': 'Dolor de cabeza',
+                'y': dolor_cabeza
+            }, {
+                'name': 'Fiebre',
+                'y': fiebre
+            }]
+        else:
+            data_lst = [{
+                'name': 'Sin datos',
+                'y': 100
+            }]
+
+        return data_lst
+
+    @api.multi
+    def get_water_supply_data(self, **kwargs):
+        community_id = kwargs['community_id']
+        last_survey = self._get_last_survey()
+        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        propio = 0
+        comunitario = 0
+
+        for input in survey_inputs:
+            if input.water_supply == 'aljibe_propio':
+                propio += 1
+            else:
+                comunitario += 1
+
+        if last_survey:
+            data_lst = [{
+                'name': 'Aljibe propio',
+                'y': propio
+            }, {
+                'name': 'Aljibe comunitario',
+                'y': comunitario
+            }]
+        else:
+            data_lst = [{
+                'name': 'Sin datos',
+                'y': 100
+            }]
+
+        return data_lst
+
+    @api.multi
+    def get_occupation_data(self, **kwargs):
+        community_id = kwargs['community_id']
+        last_survey = self._get_last_survey()
+        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        agricultor = 0
+        jornalero = 0
+
+        for input in survey_inputs:
+            agricultor += input.occupation_agricultor or 0
+            jornalero += input.occupation_jornalero or 0
+
+        if last_survey:
+            data_lst = [{
+                'name': 'Agricultor',
+                'y': agricultor
+            }, {
+                'name': 'Jornalero',
+                'y': jornalero
+            }]
+        else:
+            data_lst = [{
+                'name': 'Sin datos',
+                'y': 100
+            }]
+
+        return data_lst
+
+    @api.multi
+    def get_education_data(self, **kwargs):
+        community_id = kwargs['community_id']
+        last_survey = self._get_last_survey()
+        survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+        primario = 0
+        secundario = 0
+        sin_instruccion = 0
+
+        for input in survey_inputs:
+            primario += input.education_primario or 0
+            secundario += input.education_secundario or 0
+            sin_instruccion += input.education_sin_instruccion or 0
+
+        if last_survey:
+            data_lst = [{
+                'name': 'Primario',
+                'y': primario
+            }, {
+                'name': 'Secundario',
+                'y': secundario
+            }, {
+                'name': 'Sin Instrucción',
+                'y': sin_instruccion
+            }]
+        else:
+            data_lst = [{
+                'name': 'Sin datos',
+                'y': 100
+            }]
+
+        return data_lst
+
+    @api.multi
+    def get_charts_data(self, **kwargs):
+        community_id = kwargs['community_id'] if kwargs.get('community_id') else None
+        survey_inputs = self._charts_data(community_id)
+        if survey_inputs:
+            chart = kwargs['chart']
+            if chart == 'gender':
+                return self._get_gender_data(survey_inputs)
+            elif chart == 'population':
+                return self._get_population_data(survey_inputs)
+            else:
+                return []
