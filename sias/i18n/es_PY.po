@@ -267,7 +267,7 @@ msgstr "Crédito concedido"
 #. module: sias
 #: model:ir.model.fields,field_description:sias.field_sias_survey_input_daily_liters
 msgid "Daily liters"
-msgstr "Daily liters"
+msgstr "Litros diarios"
 
 #. module: sias
 #: model:ir.model.fields,field_description:sias.field_sias_home_date
@@ -856,7 +856,7 @@ msgstr "Calle2"
 #. module: sias
 #: model:ir.model.fields,field_description:sias.field_sias_survey_input_sump
 msgid "Sump"
-msgstr "Posee letrina"
+msgstr "Letrina"
 
 #. module: sias
 #: model:ir.actions.act_window,name:sias.action_sias_survey_form_view

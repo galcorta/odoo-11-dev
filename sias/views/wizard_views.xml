@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="pre_charts_page_wizard">
+        <field name="name">Prepare charts page</field>
+        <field name="model">sias.pre.charts.page.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <span>Si desea puede realizar filtros seleccionando una encuesta y una o varias comunidades,
+                        si no selecciona una encuesta se tomaran los datos de la mas actual:</span>
+                </group>
+                <group>
+                    <field name="survey_id"/>
+                    <field name="community_ids"/>
+                </group>
+                <!--<group>-->
+                    <!--<field name="community_ids" nolabel="1"/>-->
+                <!--</group>-->
+                <footer>
+                    <button string="Cancel" special="cancel" class="oe_highlight"/>
+                    <button name="open_charts_page" string="Ver Gráficos" type="object" class="oe_highlight" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sias_charts_page_wizard_form_view" model="ir.actions.act_window">
+        <field name="name">Charts Page</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sias.pre.charts.page.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="sias_charts_page_wizard_menu"
+              action="action_sias_charts_page_wizard_form_view"
+              parent="sias.sias_report_menu"/>
+
+</odoo>

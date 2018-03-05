@@ -11,8 +11,8 @@ odoo.define("sias.chart_page", function(require) {
     var _t = core._t;
     var QWeb = core.qweb;
 
-    var ChartPage = Widget.extend({
-        template: "GenderPieChart",
+    var ChartsPage = Widget.extend({
+        template: "ChartsPage",
         init: function(parent, options){
             this._super.apply(this, arguments);
             this.community_id=options.params.community_id;
@@ -440,9 +440,9 @@ odoo.define("sias.chart_page", function(require) {
         },
     });
 
-    core.action_registry.add("action_sias_chart_page", ChartPage);
+    core.action_registry.add("action_sias_charts_page", ChartsPage);
     return {
-        ChartPage: ChartPage,
+        ChartsPage: ChartsPage,
     };
 
 });

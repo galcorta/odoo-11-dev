@@ -27,6 +27,7 @@
         'security/ir.model.access.csv',
         'views/templates.xml',
         'views/views.xml',
+        'views/wizard_views.xml',
     ],
     'qweb': ['static/src/xml/*.xml'],
     # only loaded in demonstration mode

@@ -8,7 +8,7 @@
             <script type="text/javascript"
                     src="/sias/static/src/lib/no-data-to-display.js"/>
             <script type="text/javascript"
-                    src="/sias/static/src/js/web_gender_pie_chart.js"/>
+                    src="/sias/static/src/js/web_charts_page.js"/>
         </xpath>
     </template>
 </odoo>

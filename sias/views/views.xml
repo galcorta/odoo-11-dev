@@ -40,8 +40,25 @@
                             </h1>
                         </div>
                         <group>
-                            <field name="city_id"/>
-                            <field name="description"/>
+                            <group>
+                                <field name="city_id"/>
+                                <field name="potable_capacity"/>
+                                <field name="no_potable_capacity"/>
+                            </group>
+                        </group>
+                        <group string="Medios de almacenamiento">
+                            <field name="means_supply_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="means_supply_id"/>
+                                    <field name="capacity"/>
+                                    <field name="is_potable"/>
+                                    <field name="pump_type"/>
+                                    <field name="is_new"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Observación">
+                            <field name="description" nolabel="1"/>
                         </group>
                     </sheet>
                 </form>
@@ -96,9 +113,9 @@
           <field name="model">sias.home</field>
           <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="chief_name" string="Home Chief"/>
-                <field name="community_id"/>
+                <field name="home_number"/>
+                <field name="name" string="Home Chief"/>
+                <field name="observation"/>
                 <field name="create_date" widget="date"/>
             </tree>
           </field>
@@ -120,10 +137,10 @@
                         <!--<field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}'/>-->
                         <div class="oe_title">
                             <h1>
-                                <field name="name" string="Número" default_focus="1" />
+                                <field name="name" placeholder="Jefe de la vivienda" default_focus="1" required="1"/>
                             </h1>
                             <h1>
-                                <field name="chief_name" placeholder="Jefe de la vivienda" required="1"/>
+                                <field name="home_number" placeholder="Número de vivienda" required="1"/>
                             </h1>
                         </div>
                         <group>
@@ -143,6 +160,7 @@
                     <field name="id"/>
                     <field name="name"/>
                     <field name="color"/>
+                    <field name="home_number"/>
                     <field name="display_name"/>
                     <field name="title"/>
                     <field name="email"/>
@@ -187,7 +205,7 @@
                                 <div class="oe_kanban_details">
                                     <div>
                                         <!--<label for="display_name">Jefe:</label>-->
-                                        <field name="name"/>
+                                        <field name="home_number"/>
                                     </div>
                                     <div>
                                         <!--<label for="display_name">Jefe:</label>-->
@@ -280,27 +298,26 @@
                                 <field name="occupation_agricultor"/>
                                 <field name="occupation_jornalero"/>
                             </group>
-                            <group string="Fuente de abastecimiento">
+                            <group string="Abastecimiento">
                                 <field name="water_supply"/>
                                 <field name="source_distance"/>
+                                <field name="daily_liters"/>
                             </group>
-                        </group>
-                        <group>
                             <group string="Enfermedades mas comunes">
-                                <field name="diseases_diarrea"/>
-                                <field name="diseases_respiratoria"/>
-                                <field name="diseases_dolor_cabeza"/>
-                                <field name="diseases_fiebre"/>
+                                <field name="common_disease_ids" widget="many2many_checkboxes" nolabel="1"/>
                             </group>
                             <group string="Otros">
-                                <field name="water_qualification"/>
-                                <field name="water_treatment"/>
-                                <field name="daily_liters"/>
-                                <field name="sump"/>
+                                <field name="water_treatment" widget="radio"/>
+                                <field name="water_qualification" widget="radio"/>
                             </group>
-                        </group>
-                        <group string="Observación">
-                            <field name="observation" nolabel="1"/>
+                            <group>
+                                <field name="sump"/>
+                                <field name="shower"/>
+                                <field name="filter"/>
+                            </group>
+                            <group string="Observación">
+                                <field name="observation" nolabel="1"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -469,13 +486,18 @@
             <!--sequence="1"/>-->
 
         <!--Action for Gender Pie Chart -->
-        <record id="action_gender_pie_chart" model="ir.actions.client">
-            <field name="name">Gender Pie Chart</field>
-            <field name="tag">action_sias_chart_page</field>
 
+
+        <record id="action_charts_page" model="ir.actions.client">
+            <field name="name">Charts Page</field>
+            <field name="tag">action_sias_charts_page</field>
         </record>
-        <menuitem id="GenderPieChart" name="Gender Pie Chart" parent="sias_report_menu"
-            action="action_gender_pie_chart"  sequence="1"/>
+
+        <!--<menuitem id="sias_charts_page_menu"-->
+                  <!--name="Charts Page"-->
+                  <!--parent="sias_report_menu"-->
+                  <!--action="action_charts_page"-->
+                  <!--sequence="1"/>-->
 
     </data>
 </odoo>
