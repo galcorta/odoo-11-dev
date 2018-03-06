@@ -18,6 +18,12 @@ class MeansSupply(models.Model):
 class Community(models.Model):
     _name = 'sias.community'
 
+    def _get_last_survey(self):
+        last_survey = self.env['sias.survey'].search([])
+        if last_survey:
+            last_survey = last_survey.sorted(key=lambda r: r.create_date)[-1]
+        return last_survey
+
     name = fields.Char('Name', required=True)
     description = fields.Text()
     city_id = fields.Many2one('res.city', string='City', required=True)
@@ -52,6 +58,18 @@ class Community(models.Model):
             else:
                 rec.potable_capacity, rec.no_potable_capacity = 0, 0
 
+    # @api.depends('means_supply_ids')
+    # def _compute_water_per_cap(self):
+    #     cant_habitantes
+    #     last_survey = self._get_last_survey()
+    #     if last_survey:
+    #         survey_input_obj = self.env['sias.survey.input']
+    #         survey_input_list = survey_input_obj.search([('home_id.community_id', '=', self.id),
+    #                                                      ('survey_id', '=', last_survey.id)])
+    #         for item in survey_input_list:
+
+
+
     @api.model
     def _get_default_image(self):
         colorize, img_path, image = False, False, False
@@ -81,7 +99,8 @@ class Community(models.Model):
     def open_dashboard(self):
         action = self.env.ref('sias.action_charts_page').read()[0]
         action.update({'params': {
-                        'community_id': self.id
+                        'survey_id': 0,
+                        'community_id': [self.id]
                     }})
         return action
 
@@ -113,6 +132,7 @@ class Home(models.Model):
     home_number = fields.Char("Home number")
     community_id = fields.Many2one('sias.community', required=True, ondelete='restrict', string="Community")
     observation = fields.Text("Observation")
+    population = fields.Integer("Population quantity")
     active = fields.Boolean("Active", default=True)
 
     def _get_home_code(self):
@@ -244,6 +264,13 @@ class SurveyInput(models.Model):
 
     community_id = fields.Many2one(related='home_id.community_id', string="Community")
 
+    @api.model
+    def create(self, vals):
+        home = self.env['sias.home'].search([('id', '=', vals['home_id'])])
+        home.write({'population': vals['population']})
+        record = super(SurveyInput, self).create(vals)
+        return record
+
     @api.constrains('population')
     def _check_population(self):
         for record in self:
@@ -262,14 +289,16 @@ class SurveyInput(models.Model):
     def _compute_mens(self):
         self.mens = self.population - self.womens
 
-    def _charts_data(self, community_id):
+    def _charts_data(self, community_id, survey_id):
         survey_inputs = None
-        last_survey = self._get_last_survey()
-        if last_survey:
+        if not survey_id:
+            survey = self._get_last_survey()
+            survey_id = survey.id if survey else survey_id
+        if survey_id:
             if community_id:
-                survey_inputs = self.search([['community_id', '=', community_id], ['survey_id', '=', last_survey.id]])
+                survey_inputs = self.search([['community_id', 'in', community_id], ['survey_id', '=', survey_id]])
             else:
-                survey_inputs = self.search([['survey_id', '=', last_survey.id]])
+                survey_inputs = self.search([['survey_id', '=', survey_id]])
         return survey_inputs
 
     def _get_gender_data(self, survey_inputs):
@@ -514,7 +543,9 @@ class SurveyInput(models.Model):
     @api.multi
     def get_charts_data(self, **kwargs):
         community_id = kwargs['community_id'] if kwargs.get('community_id') else None
-        survey_inputs = self._charts_data(community_id)
+        survey_id = kwargs['survey_id'] if kwargs.get('survey_id') else None
+
+        survey_inputs = self._charts_data(community_id, survey_id)
         if survey_inputs:
             chart = kwargs['chart']
             if chart == 'gender':
@@ -541,6 +572,7 @@ class SurveyInput(models.Model):
                 return []
 
 
+
 """
 Wizard for select community before dashboard
 
@@ -550,15 +582,23 @@ Wizard for select community before dashboard
 class PreChartsPage(models.TransientModel):
     _name = 'sias.pre.charts.page.wizard'
 
-    survey_id = fields.Many2one('sias.survey')
+    def _get_last_survey(self):
+        last_survey = self.env['sias.survey'].search([])
+        if last_survey:
+            last_survey = last_survey.sorted(key=lambda r: r.create_date)[-1]
+        return last_survey
+
+    survey_id = fields.Many2one('sias.survey', default=_get_last_survey)
     community_ids = fields.Many2many('sias.community', string="Communities")
 
     def open_charts_page(self):
         action = self.env.ref('sias.action_charts_page').read()[0]
 
-        community = self.community_ids[0]
+        survey_id = self.survey_id and self.survey_id.id or 0
+        community_list = [community.id for community in self.community_ids]
 
         action.update({'params': {
-                        'community_id': community.id
+                        'survey_id': survey_id,
+                        'community_id': community_list
                     }})
         return action

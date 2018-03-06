@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+         <!--
+        Common diseases
+        -->
+        <record id="sias_common_disease_diarrea" model="sias.common.disease">
+            <field name="name">Diarrea</field>
+        </record>
+
+        <record id="sias_common_disease_respiratorias" model="sias.common.disease">
+            <field name="name">Respiratorias</field>
+        </record>
+
+        <record id="sias_common_disease_dolor_cabeza" model="sias.common.disease">
+            <field name="name">Dolor de cabeza</field>
+        </record>
+
+        <record id="sias_common_disease_fiebre" model="sias.common.disease">
+            <field name="name">Fiebre</field>
+        </record>
+
+        <record id="sias_common_disease_otros" model="sias.common.disease">
+            <field name="name">Otros</field>
+        </record>
+
+        <!--
+        Means supply
+        -->
+        <record id="sias_means_supply_tajamar" model="sias.means.supply">
+            <field name="name">Tajamar</field>
+        </record>
+
+        <record id="sias_means_supply_aljibe" model="sias.means.supply">
+            <field name="name">Aljibe</field>
+        </record>
+
+        <record id="sias_means_supply_tanque_elevado" model="sias.means.supply">
+            <field name="name">Tanque elevado</field>
+        </record>
+    </data>
+</odoo>

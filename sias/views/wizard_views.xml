@@ -7,16 +7,13 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <span>Si desea puede realizar filtros seleccionando una encuesta y una o varias comunidades,
-                        si no selecciona una encuesta se tomaran los datos de la mas actual:</span>
+                    <span>Puede realizar filtros por encuesta y por comunidad. Si no selecciona una comunidad
+                        traera los datos de todas las comunidades:</span>
                 </group>
                 <group>
                     <field name="survey_id"/>
-                    <field name="community_ids"/>
+                    <field name="community_ids" options="{'no_create': True}"/>
                 </group>
-                <!--<group>-->
-                    <!--<field name="community_ids" nolabel="1"/>-->
-                <!--</group>-->
                 <footer>
                     <button string="Cancel" special="cancel" class="oe_highlight"/>
                     <button name="open_charts_page" string="Ver Gráficos" type="object" class="oe_highlight" />

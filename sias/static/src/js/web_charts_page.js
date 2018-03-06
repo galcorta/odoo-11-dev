@@ -16,6 +16,7 @@ odoo.define("sias.chart_page", function(require) {
         init: function(parent, options){
             this._super.apply(this, arguments);
             this.community_id=options.params.community_id;
+            this.survey_id=options.params.survey_id;
             this.chart_lang = {
                                 printChart: 'Imprimir Gráfico',
                                 downloadPNG: 'Descargar imagen PNG',
@@ -32,7 +33,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'gender', community_id: self.community_id},
+                kwargs: {chart: 'gender', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('gender', {
                     lang: self.chart_lang,
@@ -73,7 +74,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'population', community_id: self.community_id},
+                kwargs: {chart: 'population', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('population', {
                     lang: self.chart_lang,
@@ -114,7 +115,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'sump', community_id: self.community_id},
+                kwargs: {chart: 'sump', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('sump', {
                     lang: self.chart_lang,
@@ -155,7 +156,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'source_distance', community_id: self.community_id},
+                kwargs: {chart: 'source_distance', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('source_distance', {
                     lang: self.chart_lang,
@@ -196,7 +197,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'water_qualification', community_id: self.community_id},
+                kwargs: {chart: 'water_qualification', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('water_qualification', {
                     lang: self.chart_lang,
@@ -237,7 +238,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'water_treatment', community_id: self.community_id},
+                kwargs: {chart: 'water_treatment', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('water_treatment', {
                     lang: self.chart_lang,
@@ -278,7 +279,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'common_diseases', community_id: self.community_id},
+                kwargs: {chart: 'common_diseases', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('common_diseases', {
                     lang: self.chart_lang,
@@ -319,7 +320,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'water_supply', community_id: self.community_id},
+                kwargs: {chart: 'water_supply', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('water_supply', {
                     lang: self.chart_lang,
@@ -360,7 +361,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'occupation', community_id: self.community_id},
+                kwargs: {chart: 'occupation', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('occupation', {
                     lang: self.chart_lang,
@@ -401,7 +402,7 @@ odoo.define("sias.chart_page", function(require) {
                 model:  'sias.survey.input',
                 method: 'get_charts_data',
                 args: [[]],
-                kwargs: {chart: 'education', community_id: self.community_id},
+                kwargs: {chart: 'education', community_id: self.community_id, survey_id: self.survey_id},
             }).then(function (result) {
                 self.GenderPieChart = Highcharts.chart('education', {
                     lang: self.chart_lang,
