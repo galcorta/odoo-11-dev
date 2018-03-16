@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--SIAS Survey-->
+        <record model="ir.ui.view" id="sias_survey_list_view">
+          <field name="name">sias survey list</field>
+          <field name="model">sias.survey</field>
+          <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="create_date" widget="date" string="Creado en"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_survey_form_view">
+            <field name="name">sias survey form</field>
+            <field name="model">sias.survey</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                    options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--SIAS Survey Input-->
+        <record model="ir.ui.view" id="sias_survey_input_list_view">
+          <field name="name">sias survey input list</field>
+          <field name="model">sias.survey.input</field>
+          <field name="arch" type="xml">
+            <tree>
+                <field name="home_id"/>
+                <field name="community_id"/>
+                <field name="survey_id"/>
+                <field name="create_date" widget="date"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_survey_input_form_view">
+            <field name="name">sias survey input form</field>
+            <field name="model">sias.survey.input</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="survey_id"/>
+                            <field name="home_id"/>
+                        </group>
+                        <group>
+                            <group string="Habitantes">
+                                <field name="population"/>
+                                <field name="lt_20"/>
+                                <field name="womens"/>
+                            </group>
+                            <group string="Nivel educativo">
+                                <field name="education_primario"/>
+                                <field name="education_secundario"/>
+                                <field name="education_sin_instruccion"/>
+                            </group>
+                            <group string="Ocupación">
+                                <field name="occupation_agricultor"/>
+                                <field name="occupation_jornalero"/>
+                            </group>
+                            <group string="Abastecimiento">
+                                <field name="water_supply"/>
+                                <field name="source_distance"/>
+                                <field name="daily_liters"/>
+                            </group>
+                            <group string="Enfermedades más comunes">
+                                <field name="common_disease_ids" widget="many2many_checkboxes" nolabel="1"/>
+                            </group>
+                            <group string="Otros">
+                                <field name="water_treatment" widget="radio"/>
+                                <field name="water_qualification" widget="radio"/>
+                            </group>
+                            <group>
+                                <field name="sump"/>
+                                <field name="shower"/>
+                                <field name="filter"/>
+                            </group>
+                            <group string="Observación">
+                                <field name="observation" nolabel="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+        <record id="action_sias_survey_form_view" model="ir.actions.act_window">
+            <field name="name">Survey</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sias.survey</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create Surveys.
+              </p><p>
+                Puede crear, buscar y actualizar encuestas.
+              </p><p>
+              </p>
+            </field>
+        </record>
+
+        <record id="action_sias_survey_input_form_view" model="ir.actions.act_window">
+            <field name="name">Survey Input</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sias.survey.input</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create Surveys inputs.
+              </p><p>
+                Puede crear, buscar y actualizar respuestas a encuestas.
+              </p><p>
+              </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

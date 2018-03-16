@@ -6,6 +6,8 @@
             <script type="text/javascript"
                     src="/sias/static/src/lib/exporting.js"/>
             <script type="text/javascript"
+                    src="/sias/static/src/lib/offline-exporting.js"/>
+            <script type="text/javascript"
                     src="/sias/static/src/lib/no-data-to-display.js"/>
             <script type="text/javascript"
                     src="/sias/static/src/js/web_charts_page.js"/>

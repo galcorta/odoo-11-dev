@@ -170,11 +170,15 @@ msgstr "Entidad comercial"
 
 #. module: sias
 #: model:ir.actions.act_window,name:sias.action_sias_comunity_form_view
+#: model:ir.ui.menu,name:sias.sias_comunity_menu
+msgid "Communities"
+msgstr "Comunidades"
+
+#. module: sias
 #: model:ir.model.fields,field_description:sias.field_sias_home_community_id
 #: model:ir.model.fields,field_description:sias.field_sias_survey_input_community_id
-#: model:ir.ui.menu,name:sias.sias_comunity_menu
 msgid "Community"
-msgstr "Comunidades"
+msgstr "Comunidad"
 
 #. module: sias
 #: model:ir.model.fields,field_description:sias.field_sias_home_city_id
@@ -680,8 +684,8 @@ msgstr "Partner-related data of the home"
 
 #. module: sias
 #: model:ir.model.fields,field_description:sias.field_sias_survey_name
-msgid "Periodo"
-msgstr "Periodo"
+msgid "Name"
+msgstr "Nombre"
 
 #. module: sias
 #: model:ir.model.fields,field_description:sias.field_sias_home_phone

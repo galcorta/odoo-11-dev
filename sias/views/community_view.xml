@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- explicit views definitions -->
+
+        <!-- SIAS Community -->
+        <record model="ir.ui.view" id="sias_comunity_list_view">
+          <field name="name">sias community list</field>
+          <field name="model">sias.community</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="city_id"/>
+              <field name="create_date" widget="date"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_comunity_form_view">
+            <field name="name">sias community form</field>
+            <field name="model">sias.community</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active"
+                                    type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                    <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                            <button string="Graficos"
+                                type="object"
+                                name= "open_dashboard"
+                                class="oe_stat_button" icon="fa-arrows-v"/>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="city_id"/>
+
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Informacion general" autofocus="autofocus">
+                                <group string="Datos calculados">
+                                    <field name="potable_capacity"/>
+                                    <field name="no_potable_capacity"/>
+                                    <field name="potable_per_cap"/>
+                                    <field name="no_potable_per_cap"/>
+                                </group>
+                                <group string="Observación">
+                                    <field name="description" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="Medios de Almacenamiento">
+                                <group>
+                                    <field name="means_supply_ids" nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="means_supply_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                            <field name="capacity"/>
+                                            <field name="is_potable"/>
+                                            <field name="pump_type"/>
+                                            <field name="is_new"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sias_community_kanban_view">
+            <field name="name">sias.community.kanban</field>
+            <field name="model">sias.community</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="city_id"/>
+                    <field name="image"/>
+                    <field name="image_medium"/>
+                    <field name="image_small"/>
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="o_kanban_image">
+                                    <t t-if="record.image_small.raw_value">
+                                        <img t-att-src="kanban_image('sias.community', 'image_small', record.id.raw_value)"/>
+                                    </t>
+                                    <t t-if="!record.image_small.raw_value">
+                                        <img t-att-src='_s + "/base/static/src/img/community.png"'/>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <div>
+                                        <!--<label for="display_name">Jefe:</label>-->
+                                        <field name="name"/>
+                                    </div>
+                                    <div>
+                                        <!--<label for="display_name">Jefe:</label>-->
+                                        <field name="city_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record id="action_sias_comunity_form_view" model="ir.actions.act_window">
+            <field name="name">Communities</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sias.community</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create Communities.
+              </p><p>
+                Puede crear, buscar y actualizar comunidades.
+              </p><p>
+              </p>
+            </field>
+        </record>
+        <record id="action_partner_sias_comunity_form_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="sias_community_kanban_view"/>
+            <field name="act_window_id" ref="action_sias_comunity_form_view"/>
+        </record>
+        <record id="action_partner_sias_comunity_form_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="sias_comunity_list_view"/>
+            <field name="act_window_id" ref="action_sias_comunity_form_view"/>
+        </record>
+        <record id="action_partner_sias_comunity_form_view3" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sias_comunity_form_view"/>
+            <field name="act_window_id" ref="action_sias_comunity_form_view"/>
+        </record>
+
+    </data>
+</odoo>

@@ -25,9 +25,13 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/sias_security.xml',
         'data/sias_data.xml',
         'views/templates.xml',
-        'views/views.xml',
+        'views/community_view.xml',
+        'views/home_view.xml',
+        'views/survey_view.xml',
+        'views/sias_view.xml',
         'views/wizard_views.xml',
     ],
     'qweb': ['static/src/xml/*.xml'],

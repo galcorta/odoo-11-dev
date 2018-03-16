@@ -3,3 +3,6 @@ access_sias_community,sias.community,model_sias_community,,1,1,1,1
 access_sias_home,sias.home,model_sias_home,,1,1,1,1
 access_sias_survey,sias.survey,model_sias_survey,,1,1,1,1
 access_sias_survey_input,sias.survey.input,model_sias_survey_input,,1,1,1,1
+access_sias_means_supply,sias.means.supply,model_sias_means_supply,,1,1,1,1
+access_sias_community_means_supply,sias.community.means.supply,model_sias_community_means_supply,,1,1,1,1
+access_sias_pre_charts_page_wizard,sias.pre.charts.page.wizard,model_sias_pre_charts_page_wizard,,1,1,1,1

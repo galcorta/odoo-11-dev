@@ -8,8 +8,8 @@ from odoo.modules import get_module_resource
 from odoo.exceptions import ValidationError
 
 
-class MeansSupply(models.Model):
-    _name = 'sias.means.supply'
+class MeansSupplyType(models.Model):
+    _name = 'sias.means.supply.type'
 
     name = fields.Char('Name', required=True)
     active = fields.Boolean("Active", default=True)
@@ -39,12 +39,13 @@ class Community(models.Model):
                                      "resized as a 64x64px image, with aspect ratio preserved. " \
                                      "Use this field anywhere a small image is required.")
     means_supply_ids = fields.One2many('sias.community.means.supply', 'community_id', string="Means supply")
+    home_ids = fields.One2many('sias.home', 'community_id', string="Homes")
     active = fields.Boolean("Active", default=True)
 
     potable_capacity = fields.Integer(compute='_compute_water_capacity', string="Potable capacity")
     no_potable_capacity = fields.Integer(compute='_compute_water_capacity', string="No potable capacity")
-    # potable_per_cap = fields.Integer(compute='_compute_water_per_cap', string="Potable por persona")
-    # no_potable_per_cap = fields.Integer(compute='_compute_water_per_cap', string="No potable por persona")
+    potable_per_cap = fields.Integer(compute='_compute_water_per_cap', string="Potable por persona")
+    no_potable_per_cap = fields.Integer(compute='_compute_water_per_cap', string="No potable por persona")
 
     @api.depends('means_supply_ids')
     def _compute_water_capacity(self):
@@ -58,15 +59,18 @@ class Community(models.Model):
             else:
                 rec.potable_capacity, rec.no_potable_capacity = 0, 0
 
-    # @api.depends('means_supply_ids')
-    # def _compute_water_per_cap(self):
-    #     cant_habitantes
-    #     last_survey = self._get_last_survey()
-    #     if last_survey:
-    #         survey_input_obj = self.env['sias.survey.input']
-    #         survey_input_list = survey_input_obj.search([('home_id.community_id', '=', self.id),
-    #                                                      ('survey_id', '=', last_survey.id)])
-    #         for item in survey_input_list:
+    @api.depends('means_supply_ids')
+    def _compute_water_per_cap(self):
+        for rec in self:
+            population = sum([(home.population or 0) for home in rec.home_ids])
+            if population:
+                potable = sum([(supply.capacity or 0) for supply in rec.means_supply_ids if supply.is_potable])
+                no_potable = sum([(supply.capacity or 0) for supply in rec.means_supply_ids if not supply.is_potable])
+                rec.potable_per_cap = round(potable / population, 0)
+                rec.no_potable_per_cap = round(no_potable / population, 0)
+            else:
+                rec.potable_per_cap = 0
+                rec.no_potable_per_cap = 0
 
 
 
@@ -105,11 +109,12 @@ class Community(models.Model):
         return action
 
 
-class CommunityMeansSupply(models.Model):
-    _name = 'sias.community.means.supply'
+class MeansSupply(models.Model):
+    _name = 'sias.means.supply'
 
     community_id = fields.Many2one('sias.community', required=True, ondelete='restrict', string="Community")
-    means_supply_id = fields.Many2one('sias.means.supply', required=True, ondelete='restrict', string="Means Supply")
+    means_supply_type_id = fields.Many2one('sias.means.supply.type', required=True, ondelete='restrict',
+                                           string="Means Supply Type")
     capacity = fields.Integer('Capacity')
     is_potable = fields.Boolean('Is potable?')
     pump_type = fields.Selection([
@@ -119,6 +124,7 @@ class CommunityMeansSupply(models.Model):
         ('solar', 'Solar')
     ], string="Pump type", default='manual')
     is_new = fields.Boolean('Is new?')
+
 
 
 class Home(models.Model):
@@ -198,8 +204,10 @@ class CommonDisease(models.Model):
 class Survey(models.Model):
     _name = 'sias.survey'
 
-    name = fields.Char('Periodo')
-    description = fields.Text()
+    name = fields.Char('Name')
+    start_date = fields.Date("Start date", required=True)
+    end_date = fields.Date("End date")
+    description = fields.Text('Description')
     active = fields.Boolean("Active", default=True)
 
     _sql_constraints = [
@@ -259,7 +267,7 @@ class SurveyInput(models.Model):
     diseases_dolor_cabeza = fields.Boolean('Dolor de cabeza')
     diseases_fiebre = fields.Boolean('Fiebre')
     diseases_otros = fields.Boolean('Otros')
-    common_disease_ids = fields.Many2many('sias.common.disease')
+    common_disease_ids = fields.Many2many('sias.common.disease', string="Enfermedades comunes")
     observation = fields.Text('Observation')
 
     community_id = fields.Many2one(related='home_id.community_id', string="Community")
@@ -270,6 +278,16 @@ class SurveyInput(models.Model):
         home.write({'population': vals['population']})
         record = super(SurveyInput, self).create(vals)
         return record
+
+    @api.multi
+    def write(self, vals):
+        for rec in self:
+            if vals.get('population'):
+                last_survey_input = rec.search([('home_id', '=', rec.home_id.id)]).sorted(key=lambda r: r.create_date)[-1]
+                if last_survey_input.id == rec.id:
+                    rec.home_id.write({'population': vals['population']})
+        return super(SurveyInput, self).write(vals)
+
 
     @api.constrains('population')
     def _check_population(self):
